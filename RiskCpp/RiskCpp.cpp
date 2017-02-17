@@ -12,6 +12,7 @@ bool IntAsSumOfTwoIntegers(int value);
 void PrimeBetweenIntervals(int a, int b);
 bool checkPrime(int n);
 int fibo(int n);
+void printPowerSet(char *set, int set_size);
 //===================================================================================
 int main()
 {
@@ -31,12 +32,17 @@ int main()
 	IntAsSumOfTwoIntegers(20);
 	PrimeBetweenIntervals(1, 201);
 
-
-	cout << "\n\nFibonacci series" << endl;
+	cout << "=======================" << endl;
+	cout << "Fibonacci series" << endl;
 	for (size_t i = 1; i < 10; i++)
 	{
 		cout << " " << fibo(i);
 	}
+
+	cout << "=======================" << endl;
+	cout << "PowerSet series" << endl;
+	char set[] = { 'a','b','c' };
+	printPowerSet(set, 3);
 
 	return 0;
 }
@@ -150,5 +156,29 @@ int fibo(int n)
 	}
 	else {
 		return -1; // Error condition
+	}
+}
+
+//===================================================================================
+// Write a method to generate the nth Fibonacci number
+//===================================================================================
+void printPowerSet(char *set, int set_size)
+{
+	/*set_size of power set of a set with set_size
+	n is (2**n -1)*/
+	unsigned int pow_set_size = pow(2, set_size);
+	int counter, j;
+
+	/*Run from counter 000..0 to 111..1*/
+	for (counter = 0; counter < pow_set_size; counter++)
+	{
+		for (j = 0; j < set_size; j++)
+		{
+			/* Check if jth bit in the counter is set
+			If set then pront jth element from set */
+			if (counter & (1 << j))
+				printf("%c", set[j]);
+		}
+		printf("\n");
 	}
 }
