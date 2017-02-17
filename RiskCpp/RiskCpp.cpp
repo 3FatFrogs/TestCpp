@@ -6,6 +6,23 @@
 
 using namespace std;
 //===================================================================================
+class Foo
+{
+	public:
+		// single parameter constructor, can be used as an implicit conversion
+		//explicit Foo(int foo) { m_foo = foo; }
+		Foo(int foo) { m_foo = foo; }
+		int GetFoo() { return m_foo; }
+	private:
+		int m_foo;
+};
+void TestImplicitCtor(Foo foo)
+{
+	int i = foo.GetFoo();
+	cout << i << endl;
+}
+//===================================================================================
+
 class Empty { };
 void f();
 bool IntAsSumOfTwoIntegers(int value);
@@ -16,6 +33,15 @@ void printPowerSet(char *set, int set_size);
 //===================================================================================
 int main()
 {
+
+	cout << "=======================" << endl;
+	Foo b(2);
+	TestImplicitCtor(b); //ok -- as it should be
+
+	int a = 123;
+	TestImplicitCtor(a); //the compiler makes an inplicit conversion to resolve the parameters
+
+	cout << "=======================" << endl;
 	struct Node *head = NULL;
 	SimpleLinkedList pippo;
 
@@ -23,13 +49,14 @@ int main()
 	{
 		pippo.insertHead(&head, i);
 	}
-
 	pippo.findCircular(head);
-
 	pippo.display(head);
 
-
+	cout << "=======================" << endl;
 	IntAsSumOfTwoIntegers(20);
+
+
+	cout << "=======================" << endl;
 	PrimeBetweenIntervals(1, 201);
 
 	cout << "=======================" << endl;
@@ -182,3 +209,4 @@ void printPowerSet(char *set, int set_size)
 		printf("\n");
 	}
 }
+
