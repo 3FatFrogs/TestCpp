@@ -9,7 +9,9 @@ using namespace std;
 class Empty { };
 void f();
 bool IntAsSumOfTwoIntegers(int value);
+void PrimeBetweenIntervals(int a, int b);
 bool checkPrime(int n);
+int fibo(int n);
 //===================================================================================
 int main()
 {
@@ -27,6 +29,9 @@ int main()
 
 
 	IntAsSumOfTwoIntegers(20);
+	PrimeBetweenIntervals(1, 201);
+
+	fibo(11);
 	return 0;
 }
 
@@ -66,7 +71,28 @@ bool IntAsSumOfTwoIntegers(int value)
 	return flag;
 }
 
+
+//===================================================================================
+// Prime Numbers Between two Intervals
+//===================================================================================
+void PrimeBetweenIntervals(int a, int b)
+{
+	bool flag;
+
+	for (int i = a + 1; i < b; ++i)
+	{
+		// If i is a prime number, flag will be equal to 1
+		flag = checkPrime(i);
+
+		if (flag)
+			cout << i << " ";
+	}
+}
+
+//===================================================================================
 // Check prime number
+//===================================================================================
+
 bool checkPrime(int n)
 {
 	int i;
@@ -82,4 +108,42 @@ bool checkPrime(int n)
 	}
 
 	return isPrime;
+}
+
+bool isPrime(int n, int d)
+{
+	if (n < 2)
+		return false;
+
+	if (d == 1)
+		return true;
+
+	else
+	{
+		if (n % d == 0)
+			return false;
+		else
+			return isPrime(n, d - 1);
+	}
+
+
+}
+
+//===================================================================================
+// Write a method to generate the nth Fibonacci number
+//===================================================================================
+int fibo(int n) 
+{
+	if (n == 0) {
+		return 0; // f(0) = 0
+	}
+	else if (n == 1) {
+		return 1; // f(1) = 1
+	}
+	else if (n > 1) {
+		return fibo(n - 1) + fibo(n - 2); // f(n) = f(n—1) + f(n-2)
+	}
+	else {
+		return -1; // Error condition
+	}
 }
