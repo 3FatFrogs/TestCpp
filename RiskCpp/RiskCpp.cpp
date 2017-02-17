@@ -31,7 +31,13 @@ int main()
 	IntAsSumOfTwoIntegers(20);
 	PrimeBetweenIntervals(1, 201);
 
-	fibo(11);
+
+	cout << "\n\nFibonacci series" << endl;
+	for (size_t i = 1; i < 10; i++)
+	{
+		cout << " " << fibo(i);
+	}
+
 	return 0;
 }
 
@@ -134,12 +140,11 @@ bool isPrime(int n, int d)
 //===================================================================================
 int fibo(int n) 
 {
-	if (n == 0) {
-		return 0; // f(0) = 0
+	if ((n == 1) || (n == 0))
+	{
+		return(n);
 	}
-	else if (n == 1) {
-		return 1; // f(1) = 1
-	}
+
 	else if (n > 1) {
 		return fibo(n - 1) + fibo(n - 2); // f(n) = f(n—1) + f(n-2)
 	}
